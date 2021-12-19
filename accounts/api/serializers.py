@@ -9,6 +9,12 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'date_joined')
 
 
+class UserSerializerForTweet(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
+
 class SignUpSerializer(serializers.ModelSerializer):
     # check data valid and not used
     username = serializers.CharField(min_length=6, max_length=20)
@@ -18,7 +24,6 @@ class SignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'password', 'email')
-
 
     def validate(self, attrs):
         username = attrs['username']
@@ -37,16 +42,16 @@ class SignUpSerializer(serializers.ModelSerializer):
         )
         return user
 
+
 class LoginSerializer(serializers.ModelSerializer):
     username = serializers.CharField()
     password = serializers.CharField()
+
     class Meta:
         model = User
-        fields = ('username','password')
+        fields = ('username', 'password')
 
     # def validate(self, attrs):
     #     if not User.objects.filter(username=attrs['username'].lower()).exists():
     #         raise ValidationError('username or password not correct,please check input')
     #     return attrs
-
-
