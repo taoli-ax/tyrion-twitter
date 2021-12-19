@@ -19,6 +19,7 @@ from rest_framework import routers
 from accounts.api.views import AccountsViewSet
 from tweets.api.views import TweetViewSet
 
+
 router = routers.DefaultRouter()
 router.register(r'api/accounts',AccountsViewSet,basename='accounts')
 router.register(r'api/tweets',TweetViewSet,basename='tweets')
